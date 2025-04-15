@@ -60,20 +60,41 @@ public class HomePageTest
         Assert.That(accountButton.GetCssValue("width"), Is.EqualTo(expectedWidthAccountButton), "width is wrong");
 
         //Search button
-        IWebElement searchButton = driver.FindElement(By.CssSelector("a.Heading.Link.Link--primary.Text--subdued.u-h8"));
-        Assert.That(searchButton.Displayed, "search button is not displayed");
+        //IWebElement searchButton = driver.FindElement(By.CssSelector("a.Heading.Link.Link--primary.Text--subdued.u-h8"));
+        //Assert.That(searchButton.Displayed, "search button is not displayed");
 
-        string expectedHeightSearchButton = "16.5px";
-        string expectedWidthSearchButton = "65.6875px";
+        //string expectedHeightSearchButton = "16.5px";
+        //string expectedWidthSearchButton = "65.6875px";
 
-        Assert.That(searchButton.GetCssValue("height"), Is.EqualTo(expectedHeightSearchButton), "height is wrong");
-        Assert.That(searchButton.GetCssValue("width"), Is.EqualTo(expectedWidthSearchButton), "width is wrong");
+        //Assert.That(searchButton.GetCssValue("height"), Is.EqualTo(expectedHeightSearchButton), "height is wrong");
+        //Assert.That(searchButton.GetCssValue("width"), Is.EqualTo(expectedWidthSearchButton), "width is wrong");
 
         //Cart button
-        IWebElement cartButton = driver.FindElement(By.CssSelector("a.Heading.u-h6"));
+        IWebElement cartButton = driver.FindElement(By.CssSelector("a[aria-label='Open cart']"));
         Assert.That(cartButton.Displayed, "cart button is not displayed");
+        IWebElement cartCount = driver.FindElement(By.CssSelector(".Header__CartCount"));
+        string countText = cartCount.Text;
+        Assert.That(countText, Is.EqualTo("0"), "cart count is > 0");
+        Console.WriteLine("Cart count is: " + countText);
 
     }
+    [Test]
+    public void SearchField()
+    {
+        driver.Navigate().GoToUrl("https://theconnectedshop.com/");
+        WebDriverWait waitForPageLoad = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            waitForPageLoad.Until(drv => ((IJavaScriptExecutor)drv).ExecuteScript("return document.readyState").Equals("complete"));
+        IWebElement searchButton = driver.FindElement(By.CssSelector("a[data-action='toggle-search']"));
+        Assert.That(searchButton.Displayed, "search button is not displayed");
+        Assert.That(searchButton.GetAttribute("href").EndsWith("/search"), "The first Search button href should be '/search'.");
+
+        searchButton.Click();
+        
+        IWebElement searchInputField = driver.FindElement(By.CssSelector("input.Search__Input.Heading"));
+        Assert.That(searchInputField.Displayed, "search bar is not displayed");
+        Assert.That(searchInputField.GetAttribute("placeholder"), Is.EqualTo("Search..."), "The Search input placeholder should be 'Search...'.");
+    }
+
     [TearDown]
     public void TearDown()
     {
