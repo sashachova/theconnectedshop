@@ -84,7 +84,8 @@ public class HomePageTest
         driver.Navigate().GoToUrl("https://theconnectedshop.com/");
         WebDriverWait waitForPageLoad = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             waitForPageLoad.Until(drv => ((IJavaScriptExecutor)drv).ExecuteScript("return document.readyState").Equals("complete"));
-        IWebElement searchButton = driver.FindElement(By.CssSelector("a[data-action='toggle-search']"));
+        //IWebElement searchButton = driver.FindElement(By.CssSelector("a[data-action='toggle-search']"))[0];
+        IWebElement searchButton = driver.FindElements(By.CssSelector("a[data-action='toggle-search']"))[0];
         Assert.That(searchButton.Displayed, "search button is not displayed");
         Assert.That(searchButton.GetAttribute("href").EndsWith("/search"), "The first Search button href should be '/search'.");
 
