@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace Theconnectedshop.Drivers
 {
-    public static class WebDriverWait 
+    public static class WebDriverFactory 
     {
         public static IWebDriver Create()
         {

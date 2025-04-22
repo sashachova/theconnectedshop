@@ -9,6 +9,7 @@ namespace Theconnectedshop.Tests
     {
         private IWebDriver driver;
         private HomePage homePage;
+        //add 
 
         [SetUp]
         public void SetUp()
