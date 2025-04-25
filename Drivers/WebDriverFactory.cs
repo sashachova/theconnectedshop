@@ -10,14 +10,14 @@ namespace Theconnectedshop.Drivers
         public static IWebDriver Create()
         {
             var options = new ChromeOptions();
-            options.AddArgument($"user-data-dir={Path.Combine(Directory.GetCurrentDirectory(), "ChromeTestProfile")}");
+            //options.AddArgument($"user-data-dir={Path.Combine(Directory.GetCurrentDirectory(), "ChromeTestProfile")}");
             options.AddArgument("--disable-notifications");
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--no-sandbox");
             options.AddArgument("--disable-dev-shm-usage");
         var driver = new ChromeDriver(options);
         driver.Manage().Window.Maximize();
-        return new ChromeDriver(options); 
+        return driver; 
         }
     }
 }

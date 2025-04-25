@@ -14,6 +14,7 @@ namespace Theconnectedshop.Tests
         public HeaderComponent Header
             {
                 get;
+                private set;
             }
 
 
@@ -22,7 +23,7 @@ namespace Theconnectedshop.Tests
         {
             driver = WebDriverFactory.Create();
             homePage = new HomePage(driver);
-            header = new HeaderComponent(driver);
+            Header = new HeaderComponent(driver);
             homePage.Open();
 
             
@@ -31,22 +32,22 @@ namespace Theconnectedshop.Tests
         [Test]
         public void Header_ShouldHaveLogoAndAccountButton()
         {
-            Assert.That(header.IsLogoDisplayed(), "Logo is not displayed");
-            Assert.That(header.GetLogoHeight(), Is.EqualTo("75"));
-            Assert.That(header.GetLogoWidth(), Is.EqualTo("250"));
+            Assert.That(Header.IsLogoDisplayed(), "Logo is not displayed");
+            Assert.That(Header.GetLogoHeight(), Is.EqualTo("75"));
+            Assert.That(Header.GetLogoWidth(), Is.EqualTo("250"));
 
-            header.ClickLogo();
+            Header.ClickLogo();
 
-            Assert.That(header.IsAccountButtonDisplayed(), "Account button not visible");
-            Assert.That(header.GetAccountButtonHeight(), Is.EqualTo("16.5px"));
-            Assert.That(header.GetAccountButtonWidth(), Is.EqualTo("65.6875px"));
+            Assert.That(Header.IsAccountButtonDisplayed(), "Account button not visible");
+            Assert.That(Header.GetAccountButtonHeight(), Is.EqualTo("16.5px"));
+            Assert.That(Header.GetAccountButtonWidth(), Is.EqualTo("65.6875px"));
         }
 
         [Test]
         public void CartButton_ShouldBeVisibleAndHaveZeroCount()
         {
-            Assert.That(header.IsCartButtonDisplayed(), "Cart button not visible");
-            Assert.That(header.GetCartCountText(), Is.EqualTo("0"), "Cart count should be 0");
+            Assert.That(Header.IsCartButtonDisplayed(), "Cart button not visible");
+            Assert.That(Header.GetCartCountText(), Is.EqualTo("0"), "Cart count should be 0");
         }
 
         [TearDown]

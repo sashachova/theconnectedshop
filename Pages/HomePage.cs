@@ -8,22 +8,11 @@ namespace Theconnectedshop.Pages
     {
             private readonly IWebDriver driver;
 
-            
-            public SearchComponent Search
-            {
-                get;
-            }
-            
             public HomePage(IWebDriver driver)
             {
                 this.driver = driver;
-                
-                Search = new SearchComponent(driver);
             }
 
-            
-     public void Open() => driver.Navigate().GoToUrl(TestSettings.BaseUrl);
-            
-
+            public void Open() => driver.Navigate().GoToUrl(TestSettings.BaseUrl);
     }
 }
