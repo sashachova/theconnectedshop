@@ -1,3 +1,4 @@
+using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -8,7 +9,7 @@ namespace Theconnectedshop.Drivers
     {
         public static IWebDriver Create()
         {
-            ChromeOptions options = new ChromeOptions();
+            var options = new ChromeOptions();
             options.AddArgument($"user-data-dir={Path.Combine(Directory.GetCurrentDirectory(), "ChromeTestProfile")}");
             options.AddArgument("--disable-notifications");
             options.AddArgument("--disable-popup-blocking");
@@ -16,7 +17,7 @@ namespace Theconnectedshop.Drivers
             options.AddArgument("--disable-dev-shm-usage");
         var driver = new ChromeDriver(options);
         driver.Manage().Window.Maximize();
-        return driver; 
+        return new ChromeDriver(options); 
         }
     }
 }

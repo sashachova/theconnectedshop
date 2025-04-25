@@ -2,6 +2,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using Theconnectedshop.Drivers;
 using Theconnectedshop.Pages;
+using Theconnectedshop.Pages.Components;
 
 namespace Theconnectedshop.Tests
 {
@@ -34,6 +35,7 @@ namespace Theconnectedshop.Tests
         public void TearDown()
         {
             driver.Quit();
+            driver.Dispose();
         }
     }
 }
