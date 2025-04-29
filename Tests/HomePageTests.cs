@@ -10,7 +10,6 @@ namespace Theconnectedshop.Tests
     {
         private IWebDriver driver;
         private HomePage homePage;
-        //add
         public HeaderComponent Header
             {
                 get;
