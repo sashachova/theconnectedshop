@@ -55,6 +55,7 @@ namespace Theconnectedshop.Tests
             
         }
         //Verify that "No result" message is displayed when input is invalid
+        [Test]
         public void SearchResutsAreEmpty_WhenEnteringInvalidInput()
         {
             Search.ClickSearchButton();
@@ -62,10 +63,10 @@ namespace Theconnectedshop.Tests
             Assert.That(Search.IsSerchResultsAreDisplayed());
 
             var itemsFromSearchResultsInvalid = driver.FindElements(By.CssSelector("div.Segment__Content"));
-            foreach (var item in itemsFromSearchResultsInvalid)
+            foreach (var itemInvalid in itemsFromSearchResultsInvalid)
             {
-                string text = item.Text.ToLower();
-                Assert.That(text, Is.EqualTo("no results could be found"));
+                string textInvalid = itemInvalid.Text.ToLower();
+                Assert.That(textInvalid, Is.EqualTo("no results could be found"));
             }
         }
 
